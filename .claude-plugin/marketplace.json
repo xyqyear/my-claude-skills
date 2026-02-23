@@ -1,0 +1,21 @@
+{
+  "name": "my-claude-skills",
+  "owner": {
+    "name": "Your Name"
+  },
+  "metadata": {
+    "description": "Personal collection of Claude Code skills",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "commit-generator",
+      "description": "Intelligent git commit message generator that analyzes staged changes and creates conventional commit messages",
+      "source": "./skills/commit-generator",
+      "strict": false,
+      "skills": [
+        "./skills/commit-generator"
+      ]
+    }
+  ]
+}
