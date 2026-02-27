@@ -18,24 +18,23 @@ Or if testing locally:
 
 ## Available Skills
 
-### commit-generator
+### cite
 
-Intelligent git commit message generator that analyzes staged changes and creates conventional commit messages.
+Academic citation finder — look up papers by title and get BibTeX entries via Semantic Scholar and DBLP.
 
 **Installation:**
 
 ```bash
-/plugin install commit-generator@my-claude-skills
+/plugin install cite@my-claude-skills
 ```
 
 **Usage:**
-Simply ask Claude to create a commit or generate a commit message:
 
-- "Create a commit for these changes"
-- "Generate a commit message"
-- "Help me write a good commit message"
+- `/cite Attention Is All You Need`
+- `/cite BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding`
+- Provide multiple titles separated by semicolons or newlines
 
-The skill will analyze your staged changes, review your commit history to match your project's style, and generate a well-formatted conventional commit message.
+The skill queries Semantic Scholar first, then falls back to DBLP for any failures. It verifies returned papers match the intended query and retries with disambiguation (author, year) if needed.
 
 ## Adding Your Own Skills
 
