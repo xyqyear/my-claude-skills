@@ -10,12 +10,12 @@
   "plugins": [
     {
       "name": "cite",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Academic citation finder — look up papers by title and get BibTeX entries via Semantic Scholar and DBLP",
-      "source": "./",
+      "source": "./skills/cite",
       "strict": false,
       "skills": [
-        "./skills/cite"
+        "./"
       ]
     }
   ]
