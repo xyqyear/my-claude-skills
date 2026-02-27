@@ -1,7 +1,7 @@
 {
   "name": "my-claude-skills",
   "owner": {
-    "name": "Your Name"
+    "name": "xyqyear"
   },
   "metadata": {
     "description": "Personal collection of Claude Code skills",
@@ -9,12 +9,13 @@
   },
   "plugins": [
     {
-      "name": "commit-generator",
-      "description": "Intelligent git commit message generator that analyzes staged changes and creates conventional commit messages",
-      "source": "./skills/commit-generator",
+      "name": "cite",
+      "version": "1.0.0",
+      "description": "Academic citation finder — look up papers by title and get BibTeX entries via Semantic Scholar and DBLP",
+      "source": "./skills/cite",
       "strict": false,
       "skills": [
-        "./skills/commit-generator"
+        "./skills/cite"
       ]
     }
   ]
