@@ -13,11 +13,18 @@ my-claude-skills/
 ├── .claude-plugin/
 │   └── marketplace.json    # Marketplace configuration with skill metadata
 ├── skills/
-│   └── <skill-name>/
-│       ├── SKILL.md        # Skill definition (required)
-│       ├── scripts/        # Optional: executable helpers
-│       ├── references/     # Optional: detailed documentation
-│       └── assets/         # Optional: templates, files
+│   ├── cite/               # Academic citation finder (DBLP + Semantic Scholar)
+│   │   ├── SKILL.md
+│   │   ├── scripts/        # Python lookup scripts
+│   │   └── references/     # API documentation
+│   └── fullstack/          # Full-stack project scaffolding (FastAPI + React)
+│       ├── SKILL.md        # Core workflow: project init, backend, frontend, devops
+│       └── references/     # Optional features
+│           ├── antdesign.md        # Ant Design UI integration
+│           ├── zustand.md          # Zustand state management
+│           ├── auth.md             # JWT auth (pwdlib + joserfc)
+│           ├── alembic.md          # Database migrations
+│           └── claude-md-template.md  # CLAUDE.md template for new projects
 ├── CONTRIBUTING.md         # Comprehensive skill development guide
 └── README.md              # User-facing documentation
 ```
