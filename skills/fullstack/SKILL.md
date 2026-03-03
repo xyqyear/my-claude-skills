@@ -118,7 +118,7 @@ uv add fastapi 'uvicorn[standard]' 'sqlalchemy[asyncio]' aiosqlite pydantic-sett
 uv add --dev pytest pytest-asyncio httpx ruff
 ```
 
-Add to `pyproject.toml`:
+Append to the **end** of `pyproject.toml` (after `[dependency-groups]`):
 
 ```toml
 [tool.uv]
@@ -486,7 +486,14 @@ pnpm add react-router @tanstack/react-query ky
 pnpm add -D @tailwindcss/vite tailwindcss vite-tsconfig-paths @tanstack/react-query-devtools
 ```
 
-Remove any auto-generated CSS files except `src/index.css`. Remove `src/App.css` if created.
+Clean up Vite boilerplate — remove these generated files:
+- `src/App.css`
+- `src/assets/react.svg`
+- `public/vite.svg`
+- `tsconfig.node.json`
+- `eslint.config.js`
+
+Update `index.html`: change `<title>` from the Vite default to the project display name.
 
 ### 3.2 vite.config.ts
 
@@ -535,6 +542,8 @@ export default defineConfig({
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "noEmit": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "isolatedModules": true,
     "skipLibCheck": true,
     "baseUrl": ".",

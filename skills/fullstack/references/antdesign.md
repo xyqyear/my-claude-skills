@@ -167,6 +167,24 @@ export default function App() {
 }
 ```
 
+## Vite Build: Chunk Size
+
+Ant Design is large (~578 kB). Split it into a separate chunk and raise the warning limit:
+
+```typescript
+// vite.config.ts — add to defineConfig
+build: {
+  chunkSizeWarningLimit: 2000,
+  rollupOptions: {
+    output: {
+      manualChunks: {
+        antd: ["antd", "@ant-design/icons"],
+      },
+    },
+  },
+},
+```
+
 ## Notification in Mutations
 
 Use Ant Design's `App.useApp()` for notifications in mutation hooks:
