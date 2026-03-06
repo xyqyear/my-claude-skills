@@ -14,7 +14,9 @@ Create a production-ready monorepo with a FastAPI backend (SQLAlchemy + aiosqlit
 Parse the project name from `$ARGUMENTS` or ask the user. Use kebab-case for the directory name and derive display names from it.
 
 Ask the user which optional features to include:
-- **Ant Design** — UI component library. See [antdesign.md](references/antdesign.md)
+- **UI Framework** (pick one):
+  - **shadcn/ui** — Composable components built on Radix UI + Tailwind CSS. See [shadcn.md](references/shadcn.md)
+  - **Ant Design** — Enterprise UI component library. See [antdesign.md](references/antdesign.md)
 - **Zustand** — State management. See [zustand.md](references/zustand.md)
 - **JWT Auth** — Login system with pwdlib + joserfc. See [auth.md](references/auth.md)
 - **Alembic** — Database migrations. See [alembic.md](references/alembic.md)

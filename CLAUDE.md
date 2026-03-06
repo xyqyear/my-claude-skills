@@ -20,6 +20,7 @@ my-claude-skills/
 │   └── fullstack/          # Full-stack project scaffolding (FastAPI + React)
 │       ├── SKILL.md        # Core workflow: project init, backend, frontend, devops
 │       └── references/     # Optional features
+│           ├── shadcn.md           # shadcn/ui integration (Radix + Tailwind)
 │           ├── antdesign.md        # Ant Design UI integration
 │           ├── zustand.md          # Zustand state management
 │           ├── auth.md             # JWT auth (pwdlib + joserfc)
