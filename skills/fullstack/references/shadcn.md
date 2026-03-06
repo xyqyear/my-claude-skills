@@ -1389,7 +1389,7 @@ export function AppSidebar() {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link to="/">
-                <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                   A
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
@@ -1509,7 +1509,9 @@ For a sidebar that collapses to show only icons instead of hiding completely:
 </Sidebar>
 ```
 
-When collapsed, `SidebarMenuButton` shows only the icon. Text is hidden automatically. Add `className="group-data-[collapsible=icon]:hidden"` to any element that should hide when collapsed.
+When collapsed, `SidebarMenuButton` shrinks to `size-8` with `overflow-hidden`, so only the leading icon remains visible and text is clipped automatically. To hide an entire `SidebarGroup` or a custom element that lives **outside** a `SidebarMenuButton`, add `className="group-data-[collapsible=icon]:hidden"`. Do not apply this class to children **inside** a `SidebarMenuButton` — the button's built-in overflow clipping already handles them.
+
+If the button contains a sized icon container (e.g. a `size-8` div in the header), add `shrink-0` so it holds its dimensions during the collapse transition instead of getting squeezed by flex.
 
 #### Sidebar Variant: Floating
 
