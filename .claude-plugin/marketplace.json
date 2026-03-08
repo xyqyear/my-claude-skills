@@ -47,6 +47,16 @@
       "skills": [
         "./"
       ]
+    },
+    {
+      "name": "shadcn-datatable",
+      "version": "1.0.0",
+      "description": "Build data tables with TanStack Table and shadcn/ui — column definitions, sorting, filtering, pagination, row selection, column visibility, faceted filters, row actions, and reusable sub-components",
+      "source": "./skills/shadcn-datatable",
+      "strict": false,
+      "skills": [
+        "./"
+      ]
     }
   ]
 }

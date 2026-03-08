@@ -30,11 +30,16 @@ my-claude-skills/
 │   │   ├── SKILL.md        # Setup, usage patterns, styling, configuration
 │   │   └── references/
 │   │       └── api.md              # Complete API reference (props, options, CSS vars)
-│   └── shadcn-form/        # Forms (shadcn/ui Field + React Hook Form + Zod)
-│       ├── SKILL.md        # Setup, control types, dynamic fields, submission
+│   ├── shadcn-form/        # Forms (shadcn/ui Field + React Hook Form + Zod)
+│   │   ├── SKILL.md        # Setup, control types, dynamic fields, submission
+│   │   └── references/
+│   │       ├── zod.md              # Zod schema patterns and validators
+│   │       └── rhf-api.md          # React Hook Form API reference
+│   └── shadcn-datatable/   # Data tables (TanStack Table + shadcn/ui)
+│       ├── SKILL.md        # Setup, columns, sorting, filtering, pagination, selection
 │       └── references/
-│           ├── zod.md              # Zod schema patterns and validators
-│           └── rhf-api.md          # React Hook Form API reference
+│           ├── components.md       # Reusable sub-components (header, pagination, toolbar, faceted filter)
+│           └── tanstack-api.md     # TanStack Table API reference (types, methods, options)
 ├── CONTRIBUTING.md         # Comprehensive skill development guide
 └── README.md              # User-facing documentation
 ```
