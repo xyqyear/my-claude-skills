@@ -6,17 +6,39 @@ shadcn/ui is **not** a traditional component library. Components are copied dire
 
 ## Installation
 
-```bash
-cd frontend
-pnpm add tailwindcss @tailwindcss/vite
-pnpm add -D @types/node
-pnpm dlx shadcn@latest init
+### Prerequisites
+
+Before running `shadcn init`, the base scaffold must have:
+
+1. **tsconfig.json** with path aliases (shadcn CLI reads this file, not `tsconfig.app.json`):
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "files": [],
+  "references": [{ "path": "./tsconfig.app.json" }]
+}
 ```
 
-The CLI auto-detects Vite + Tailwind CSS v4 and prompts for a base color (Neutral, Slate, Zinc, Gray, Stone). It creates:
+2. **Tailwind CSS v4** fully configured — `@tailwindcss/vite` plugin in `vite.config.ts` and `@import "tailwindcss"` in `src/index.css` (both are part of the base scaffold's Step 3).
 
-- `components.json` — project configuration
-- `src/lib/utils.ts` — the `cn()` helper function
+### Initialize
+
+```bash
+cd frontend
+pnpm add -D @types/node
+pnpm dlx shadcn@latest init -d
+```
+
+The `-d` flag uses defaults (style: new-york, neutral base color, CSS variables enabled). The CLI auto-detects Vite + Tailwind CSS v4 and creates:
+
+- `components.json` — project configuration (`rsc: false` for Vite, `tailwind.config: ""` for v4)
+- `src/lib/utils.ts` — the `cn()` helper (clsx + tailwind-merge)
 - Updates `src/index.css` with CSS variables and theme directives
 - Installs dependencies: `class-variance-authority`, `clsx`, `tailwind-merge`, `lucide-react`, `tw-animate-css`
 
@@ -29,244 +51,6 @@ pnpm dlx shadcn@latest add sidebar
 ```
 
 Components are placed in `src/components/ui/`. Each `add` command also installs the required Radix UI dependency automatically.
-
-## components.json
-
-```json
-{
-  "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "new-york",
-  "rsc": false,
-  "tsx": true,
-  "tailwind": {
-    "config": "",
-    "css": "src/index.css",
-    "baseColor": "neutral",
-    "cssVariables": true,
-    "prefix": ""
-  },
-  "aliases": {
-    "components": "@/components",
-    "utils": "@/lib/utils",
-    "ui": "@/components/ui",
-    "lib": "@/lib",
-    "hooks": "@/hooks"
-  },
-  "iconLibrary": "lucide"
-}
-```
-
-Key settings:
-
-- `rsc: false` — Vite does not support React Server Components
-- `tailwind.config: ""` — empty because Tailwind v4 uses CSS-first configuration (no `tailwind.config.js`)
-- `style: "new-york"` — the recommended style for new projects (`"default"` is deprecated)
-
-## vite.config.ts
-
-Merge shadcn/ui requirements into the scaffold's existing Vite config. The key addition is the `resolve.alias` for the `@` path (alternatively use `vite-tsconfig-paths` which already handles this from the base scaffold):
-
-```typescript
-import tailwindcss from "@tailwindcss/vite";
-import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
-import tsconfigPaths from "vite-tsconfig-paths";
-
-export default defineConfig({
-  plugins: [react(), tailwindcss(), tsconfigPaths()],
-  server: {
-    port: 5173,
-    proxy: {
-      "/api": {
-        target: "http://localhost:8000",
-        changeOrigin: true,
-      },
-    },
-  },
-});
-```
-
-Since the base scaffold already uses `vite-tsconfig-paths` and configures `@/*` paths in `tsconfig.app.json`, no additional `resolve.alias` is needed. The shadcn CLI detects the path alias automatically.
-
-## The cn() Utility
-
-Created at `src/lib/utils.ts`:
-
-```typescript
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
-```
-
-`clsx` conditionally builds class strings. `tailwind-merge` resolves conflicting Tailwind classes (last one wins). Every shadcn/ui component uses `cn(baseStyles, className)` so user-provided classes always override defaults.
-
-```tsx
-cn("bg-red-500", "bg-blue-500")     // => "bg-blue-500"
-cn("px-4 py-2", "p-6")              // => "p-6"
-cn("flex", isActive && "bg-primary") // conditional classes
-```
-
-## CSS Theming System
-
-### index.css
-
-The `shadcn init` command replaces `src/index.css` with a complete theme setup. The structure:
-
-```css
-@import "tailwindcss";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-}
-
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-```
-
-### Key Concepts
-
-- **OKLCH color format**: `oklch(lightness chroma hue)` — the modern color space used by Tailwind v4 and shadcn/ui
-- **Background/foreground pairs**: every semantic color has a pair (e.g., `--primary` + `--primary-foreground`). The `foreground` variant is used for text on that background
-- **`@theme inline` directive**: bridges CSS custom properties to Tailwind utility classes (e.g., `bg-primary`, `text-muted-foreground`). The `inline` keyword prevents Tailwind from generating duplicate CSS variables
-- **`@custom-variant dark`**: enables Tailwind's `dark:` prefix via the `.dark` class on `<html>`
-- **`tw-animate-css`**: replaces the deprecated `tailwindcss-animate` plugin
-
-### Adding Custom Semantic Colors
-
-```css
-:root {
-  --warning: oklch(0.84 0.16 84);
-  --warning-foreground: oklch(0.28 0.07 46);
-}
-
-.dark {
-  --warning: oklch(0.41 0.11 46);
-  --warning-foreground: oklch(0.99 0.02 95);
-}
-
-@theme inline {
-  --color-warning: var(--warning);
-  --color-warning-foreground: var(--warning-foreground);
-}
-```
-
-Then use as: `<div className="bg-warning text-warning-foreground" />`.
 
 ## Dark Mode
 

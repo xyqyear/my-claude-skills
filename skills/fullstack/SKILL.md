@@ -538,6 +538,12 @@ export default defineConfig({
 
 ```json
 {
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
   "files": [],
   "references": [{ "path": "./tsconfig.app.json" }]
 }
