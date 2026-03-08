@@ -27,6 +27,16 @@
       "skills": [
         "./"
       ]
+    },
+    {
+      "name": "shadcn-toast",
+      "version": "1.0.0",
+      "description": "Implement toast notifications using sonner with shadcn/ui integration — setup, typed toasts, promise toasts, custom styling, and full API reference",
+      "source": "./skills/shadcn-toast",
+      "strict": false,
+      "skills": [
+        "./"
+      ]
     }
   ]
 }

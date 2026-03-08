@@ -17,15 +17,19 @@ my-claude-skills/
 │   │   ├── SKILL.md
 │   │   ├── scripts/        # Python lookup scripts
 │   │   └── references/     # API documentation
-│   └── fullstack/          # Full-stack project scaffolding (FastAPI + React)
-│       ├── SKILL.md        # Core workflow: project init, backend, frontend, devops
-│       └── references/     # Optional features
-│           ├── shadcn.md           # shadcn/ui integration (Radix + Tailwind)
-│           ├── antdesign.md        # Ant Design UI integration
-│           ├── zustand.md          # Zustand state management
-│           ├── auth.md             # JWT auth (pwdlib + joserfc)
-│           ├── alembic.md          # Database migrations
-│           └── claude-md-template.md  # CLAUDE.md template for new projects
+│   ├── fullstack/          # Full-stack project scaffolding (FastAPI + React)
+│   │   ├── SKILL.md        # Core workflow: project init, backend, frontend, devops
+│   │   └── references/     # Optional features
+│   │       ├── shadcn.md           # shadcn/ui integration (Radix + Tailwind)
+│   │       ├── antdesign.md        # Ant Design UI integration
+│   │       ├── zustand.md          # Zustand state management
+│   │       ├── auth.md             # JWT auth (pwdlib + joserfc)
+│   │       ├── alembic.md          # Database migrations
+│   │       └── claude-md-template.md  # CLAUDE.md template for new projects
+│   └── shadcn-toast/       # Toast notifications (sonner + shadcn/ui)
+│       ├── SKILL.md        # Setup, usage patterns, styling, configuration
+│       └── references/
+│           └── api.md              # Complete API reference (props, options, CSS vars)
 ├── CONTRIBUTING.md         # Comprehensive skill development guide
 └── README.md              # User-facing documentation
 ```
