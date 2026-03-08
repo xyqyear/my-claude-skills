@@ -26,10 +26,15 @@ my-claude-skills/
 │   │       ├── auth.md             # JWT auth (pwdlib + joserfc)
 │   │       ├── alembic.md          # Database migrations
 │   │       └── claude-md-template.md  # CLAUDE.md template for new projects
-│   └── shadcn-toast/       # Toast notifications (sonner + shadcn/ui)
-│       ├── SKILL.md        # Setup, usage patterns, styling, configuration
+│   ├── shadcn-toast/       # Toast notifications (sonner + shadcn/ui)
+│   │   ├── SKILL.md        # Setup, usage patterns, styling, configuration
+│   │   └── references/
+│   │       └── api.md              # Complete API reference (props, options, CSS vars)
+│   └── shadcn-form/        # Forms (shadcn/ui Field + React Hook Form + Zod)
+│       ├── SKILL.md        # Setup, control types, dynamic fields, submission
 │       └── references/
-│           └── api.md              # Complete API reference (props, options, CSS vars)
+│           ├── zod.md              # Zod schema patterns and validators
+│           └── rhf-api.md          # React Hook Form API reference
 ├── CONTRIBUTING.md         # Comprehensive skill development guide
 └── README.md              # User-facing documentation
 ```

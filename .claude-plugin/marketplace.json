@@ -37,6 +37,16 @@
       "skills": [
         "./"
       ]
+    },
+    {
+      "name": "shadcn-form",
+      "version": "1.0.0",
+      "description": "Build forms with shadcn/ui Field components, React Hook Form, and Zod validation — setup, all control types, dynamic fields, async submission, and validation patterns",
+      "source": "./skills/shadcn-form",
+      "strict": false,
+      "skills": [
+        "./"
+      ]
     }
   ]
 }
