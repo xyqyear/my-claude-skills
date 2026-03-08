@@ -35,11 +35,21 @@ my-claude-skills/
 │   │   └── references/
 │   │       ├── zod.md              # Zod schema patterns and validators
 │   │       └── rhf-api.md          # React Hook Form API reference
-│   └── shadcn-datatable/   # Data tables (TanStack Table + shadcn/ui)
-│       ├── SKILL.md        # Setup, columns, sorting, filtering, pagination, selection
+│   ├── shadcn-datatable/   # Data tables (TanStack Table + shadcn/ui)
+│   │   ├── SKILL.md        # Setup, columns, sorting, filtering, pagination, selection
+│   │   └── references/
+│   │       ├── components.md       # Reusable sub-components (header, pagination, toolbar, faceted filter)
+│   │       └── tanstack-api.md     # TanStack Table API reference (types, methods, options)
+│   └── shadcn-docs/        # shadcn/ui development guide (auto-activated)
+│       ├── SKILL.md         # Principles, critical rules, component selection, workflow
 │       └── references/
-│           ├── components.md       # Reusable sub-components (header, pagination, toolbar, faceted filter)
-│           └── tanstack-api.md     # TanStack Table API reference (types, methods, options)
+│           ├── styling.md          # Semantic colors, variants, className, spacing, cn()
+│           ├── forms.md            # FieldGroup, Field, InputGroup, ToggleGroup, validation
+│           ├── composition.md      # Groups, overlays, Card, Tabs, Alert, Empty, Skeleton
+│           ├── icons.md            # data-icon, icon sizing, passing icons as objects
+│           ├── base-vs-radix.md    # asChild vs render, Select, ToggleGroup, Slider, Accordion
+│           ├── cli.md              # Commands, flags, presets, templates
+│           └── customization.md    # Theming, CSS variables, extending components
 ├── CONTRIBUTING.md         # Comprehensive skill development guide
 └── README.md              # User-facing documentation
 ```

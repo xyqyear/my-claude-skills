@@ -57,6 +57,16 @@
       "skills": [
         "./"
       ]
+    },
+    {
+      "name": "shadcn-docs",
+      "version": "1.0.0",
+      "description": "Development guidelines and best practices for shadcn/ui — styling rules, component composition, CLI commands, theming, icons, base vs radix API differences, and accessibility patterns. Activates when working with shadcn/ui components, Tailwind CSS styling, or any React frontend using shadcn.",
+      "source": "./skills/shadcn-docs",
+      "strict": false,
+      "skills": [
+        "./"
+      ]
     }
   ]
 }
