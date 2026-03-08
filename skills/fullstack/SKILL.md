@@ -484,6 +484,19 @@ Pattern rules:
 ```bash
 cd frontend
 pnpm create vite . --template react-ts
+```
+
+Add the following to `package.json` before installing dependencies:
+
+```json
+"pnpm": {
+  "onlyBuiltDependencies": [
+    "esbuild"
+  ]
+}
+```
+
+```bash
 pnpm add react-router @tanstack/react-query ky
 pnpm add -D @tailwindcss/vite tailwindcss vite-tsconfig-paths @tanstack/react-query-devtools
 ```
