@@ -532,9 +532,9 @@ export default defineConfig({
 });
 ```
 
-### 3.3 tsconfig.json and tsconfig.app.json
+### 3.3 tsconfig.json — path aliases
 
-`tsconfig.json`:
+Add path alias configuration and remove the `tsconfig.node.json` reference from the default `tsconfig.json`:
 
 ```json
 {
@@ -546,33 +546,6 @@ export default defineConfig({
   },
   "files": [],
   "references": [{ "path": "./tsconfig.app.json" }]
-}
-```
-
-`tsconfig.app.json`:
-
-```json
-{
-  "compilerOptions": {
-    "target": "ES2022",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "jsx": "react-jsx",
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noEmit": true,
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "isolatedModules": true,
-    "skipLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
-  "include": ["src"]
 }
 ```
 
